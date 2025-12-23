@@ -15,9 +15,7 @@
   ],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "child_process": "^1.0.2" 
-  },
+  "dependencies": {},
   "engines": {
     "node": ">=14.0.0"
   }
