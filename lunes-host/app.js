@@ -37,15 +37,21 @@ const fakeHtml = `
 // Xray 的 Fallback 必须指向这里
 const server = http.createServer((req, res) => {
     // 记录一下有哪些非法请求被拦截了（可选，不需要可以注释掉）
+	console.log(`[WEB] 收到请求: ${req.url}`);
     // console.log(`[WEB] Received fallback request: ${req.method} ${req.url}`);
     
     res.writeHead(200, { "Content-Type": "text/html" });
     res.end(fakeHtml);
 });
 
-server.listen(8080, "127.0.0.1", () => {
-    console.log("[INFO] Fake Web Server is running on port 8080");
+server.listen(8080, "0.0.0.0", () => {
+    console.log("[INFO] Fake Web Server is running on 0.0.0.0:8080");
 });
+
+// 新增：每10秒打印一次心跳，证明 app.js 没死
+setInterval(() => {
+    console.log("[HEARTBEAT] Web Server is alive...");
+}, 10000);
 
 
 // ==========================================
